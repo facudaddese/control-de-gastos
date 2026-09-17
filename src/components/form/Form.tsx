@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Context } from "../../context/Context";
 
 const Form = () => {
   const [input, setInput] = useState("");
+  const { state, dispatch } = useContext(Context);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
   const isInvalid = () => {
-    return input === "" || input[0] === "0";
+    return input === "" || input[0] <= "0";
   };
 
   return (
@@ -29,7 +31,7 @@ const Form = () => {
         <input
           type="number"
           id="input"
-          placeholder="975000"
+          placeholder="Ej. 975000"
           value={input}
           onChange={handleInput}
           className="outline-0 border-b border-indigo-900 rounded-[5px] p-1 w-full"
@@ -38,6 +40,7 @@ const Form = () => {
       <button
         disabled={isInvalid()}
         className={`border font-medium text-white rounded-2xl p-1 w-full disabled:opacity-30 bg-blue-500 hover:bg-blue-600 ${isInvalid() ? "cursor-not-allowed" : "cursor-pointer"}`}
+        onClick={() => {}}
       >
         Confirmar presupuesto
       </button>
