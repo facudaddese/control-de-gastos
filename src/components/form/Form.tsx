@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
-import { Context } from "../../context/Context";
+import { useState } from "react";
+import { useBudget } from "../../hooks/useBudget";
 
 const Form = () => {
   const [input, setInput] = useState("");
-  const { state, dispatch } = useContext(Context);
+  const { state, dispatch } = useBudget();
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -11,6 +11,12 @@ const Form = () => {
 
   const isInvalid = () => {
     return input === "" || input[0] <= "0";
+  };
+
+  const handleAdd = () => {
+    dispatch({ type: "addBudget", payload: { budget: input } });
+    setInput("");
+    console.log(state);
   };
 
   return (
@@ -40,7 +46,7 @@ const Form = () => {
       <button
         disabled={isInvalid()}
         className={`border font-medium text-white rounded-2xl p-1 w-full disabled:opacity-30 bg-blue-500 hover:bg-blue-600 ${isInvalid() ? "cursor-not-allowed" : "cursor-pointer"}`}
-        onClick={() => {}}
+        onClick={handleAdd}
       >
         Confirmar presupuesto
       </button>

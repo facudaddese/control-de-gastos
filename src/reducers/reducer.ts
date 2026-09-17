@@ -1,17 +1,17 @@
 export type ActionType =
-  | { type: "addBudget"; payload: { budget: number } }
-  | { type: "updateBudget"; payload: { id: string; budget: number } }
+  | { type: "addBudget"; payload: { budget: string } }
+  | { type: "updateBudget"; payload: { id: string; budget: string } }
   | { type: "deleteBudget"; payload: { id: string } }
   | { type: "clearBudget" };
 
 export type BudgeState = {
   id: string;
-  budget: number;
+  budget: string;
 };
 
 export const initialState: BudgeState = {
-  id: "0",
-  budget: 0,
+  id: crypto.randomUUID(),
+  budget: "",
 };
 
 export const reducer = (state: BudgeState, action: ActionType) => {
@@ -19,7 +19,7 @@ export const reducer = (state: BudgeState, action: ActionType) => {
     case "addBudget":
       return {
         ...state,
-        budget: action.payload.budget,
+        budget: +action.payload.budget,
       };
     // case "updateBudget":
     //   return state.map((e) =>
