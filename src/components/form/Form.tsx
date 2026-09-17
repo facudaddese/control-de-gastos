@@ -16,6 +16,7 @@ const Form = () => {
   const handleAdd = () => {
     dispatch({ type: "addBudget", payload: { budget: input } });
     setInput("");
+    console.log(state);
   };
 
   return (
