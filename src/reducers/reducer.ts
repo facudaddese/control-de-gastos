@@ -19,7 +19,7 @@ export const reducer = (state: BudgeState, action: ActionType) => {
     case "addBudget":
       return {
         ...state,
-        budget: +action.payload.budget,
+        budget: action.payload.budget,
       };
     // case "updateBudget":
     //   return state.map((e) =>

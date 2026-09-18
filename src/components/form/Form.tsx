@@ -3,7 +3,7 @@ import { useBudget } from "../../hooks/useBudget";
 
 const Form = () => {
   const [input, setInput] = useState("");
-  const { state, dispatch } = useBudget();
+  const { dispatch } = useBudget();
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -16,7 +16,6 @@ const Form = () => {
   const handleAdd = () => {
     dispatch({ type: "addBudget", payload: { budget: input } });
     setInput("");
-    console.log(state);
   };
 
   return (
